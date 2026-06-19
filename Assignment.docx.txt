@@ -1,0 +1,95 @@
+KC-PLUS Supermarket: Sales and Inventory Management System
+
+1. Introduction
+
+KC-PLUS is a retail supermarket in Kigali that presently records sales, stock levels, and supplier deliveries by hand in notebooks. The manual process has produced frequent uncertainty about real-time stock, difficulty identifying fast-moving products, and challenges reconciling daily cash with recorded sales. The proposed Sales and Inventory Management System will enable cashiers to record each sale electronically, update stock levels automatically, permit stock clerks to record supplier deliveries with itemised details, and allow managers to generate weekly sales and inventory reports on demand. The system aims to improve record accuracy, enable timely managerial decisions, and streamline reconciliation.
+
+2. Software Modeling
+
+Definition
+
+Software modeling is the methodical construction of abstract representations of a software system—its structure, behaviour and data—using diagrams, formal specifications and narratives. Models serve as communication artifacts that capture requirements, expose design alternatives, and constrain implementation decisions prior to coding.
+
+Benefits for KC-PLUS
+
+- Clarifying requirements and aligning stakeholders: Modeling forces explicit detailing of actors (cashiers, stock clerks, suppliers, managers), data items (product master, sales transactions, deliveries) and processes (sale recording, stock receipt, report generation). This reduces ambiguity between the owner, staff and developers and helps ensure the delivered system matches operational needs.
+
+- Reducing implementation risk and cost through early validation: Models such as data-flow diagrams and entity-relationship diagrams reveal inconsistencies and omissions in business rules or data structures early. Detecting such problems during analysis avoids costly rework during implementation and testing, conserving both development time and the owner’s budget.
+
+3. SDLC Process Model
+
+Recommended model: Iterative Incremental (Agile-informed)
+
+Rationale
+
+An iterative incremental approach is most appropriate for KC-PLUS. Key operational features (electronic point-of-sale and automatic stock update) are mission-critical and should be delivered early. Iterative development enables incremental delivery of high-value features, frequent validation with the owner and staff, and controlled scope for each release. This approach lowers transition risk from notebooks to the new system and allows practical refinements (report formats, supplier workflows) based on user feedback.
+
+4. Requirements Specification
+
+Functional requirement (IEEE “shall” format)
+
+- FR-01: The system shall update the inventory balance for the sold product immediately when a cashier records a completed sale transaction.
+
+Explanation: This requirement ensures on-hand quantities are accurate in real time, preventing overselling and enabling the manager to view current stock levels at any time.
+
+Non-functional requirement (IEEE “shall” format)
+
+- NFR-01: The system shall generate the weekly sales and current stock-level report within thirty (30) seconds of the manager’s request when executed on the supermarket’s standard operational hardware and network.
+
+Explanation: This response-time requirement defines acceptable performance for the report generator and supports managerial use during business hours. It guides capacity planning and performance testing.
+
+5. Structured Systems Analysis and Design (SSADM)
+
+External entities
+
+- Customer: Initiates purchases and provides payment; generates sale transactions that the system records.
+- Supplier: Delivers stock items and issues delivery notes or invoices; provides data the stock clerk records.
+
+Level 1 DFD processes
+
+- 1.0 Record Sale: Receives cashier input for purchased items and payment, issues receipts, and triggers inventory adjustments and sales-record persistence.
+- 2.0 Receive Stock: Records supplier deliveries (supplier identity, product, quantity, unit price) and updates product on-hand quantities and delivery records.
+
+Roles
+
+- Customer (external entity) triggers transactions that pass into process 1.0; the Record Sale process creates sales records and updates inventory.
+- Supplier (external entity) provides delivery documents that feed into process 2.0; the Receive Stock process updates stock levels and creates delivery receipts to support reconciliation.
+
+6. Data Flow Diagram — Level 1 (use the provided SVG image)
+
+(Place the DFD_KCPLUS.svg after this section in Word. The diagram shows clearly labelled external entities, processes, data stores and data flows.)
+
+Notes on the DFD
+
+- Processes: 1.0 Record Sale, 2.0 Receive Stock, 3.0 Generate Reports.
+- Data stores: PRODUCTS_STOCK, SALES_RECORDS, DELIVERIES.
+- External entities: Customer, Supplier, Manager.
+- Data flows are explicitly labelled (e.g., Purchase Details, Delivery Note, Weekly Sales & Stock Report).
+The DFD adheres to standard conventions: processes are numbered, data stores are persistent repositories, and external entities are sources/sinks.
+
+7. Entity Relationship Diagram (ERD)
+
+Entities and attributes
+
+- Supplier: SupplierID (PK), Name, ContactPhone, Address.
+- Product: ProductID (PK), Name, UnitPrice, QuantityOnHand, SupplierID (FK).
+
+Relationship and cardinality
+
+- Relationship: Supplier supplies Product.
+- Cardinality: One Supplier supplies zero or more Products; each Product is associated with exactly one primary Supplier in this simplified model.
+- Notation: Supplier (1) — supplies —> Product (0..*)
+
+Use the provided ERD_KCPLUS.svg to visualize the relationship. If the business later allows multiple suppliers per product, the model should be normalised to a many-to-many association via a SupplierProduct junction table.
+
+8. Conclusion
+
+Systematic software modeling and structured analysis will enable KC-PLUS to transition from handwritten notebooks to a dependable Sales and Inventory Management System with reduced risk. Explicit models clarify business rules, expose required data structures and show process interactions before implementation begins. The iterative incremental SDLC supports early delivery of essential functionality and continuous refinement. Together, the functional and non-functional requirements, the Level 1 DFD and the ERD supply developers and project stakeholders with a clear blueprint for building a maintainable system that improves stock accuracy, supports timely managerial reporting and simplifies reconciliation procedures.
+
+Prepared by: Student
+
+Formatting instructions for Word:
+- Paste the contents of this file into a new Word document.
+- Apply Times New Roman, 12pt for body text; Headings: 14–16pt bold.
+- Insert the SVG files (DFD_KCPLUS.svg and ERD_KCPLUS.svg) immediately after sections 6 and 7 respectively.
+- Save the Word document as Assignment.docx.

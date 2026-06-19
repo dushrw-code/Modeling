@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000" height="380" viewBox="0 0 1000 380" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .box { fill:#ffffff; stroke:#222222; stroke-width:2px; }
+    .title { font-family:"Times New Roman", Times, serif; font-size:18px; font-weight:700; }
+    .attr { font-family:"Times New Roman", Times, serif; font-size:14px; fill:#111111; }
+    .fk { font-style:italic; fill:#444444; }
+    .line { stroke:#222222; stroke-width:2px; marker-end:url(#dot); }
+    .card { font-family:"Times New Roman", Times, serif; font-size:14px; fill:#111111; }
+  </style>
+  <defs>
+    <marker id="dot" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <circle cx="5" cy="5" r="2" fill="#222222" />
+    </marker>
+  </defs>
+
+  <text x="20" y="30" class="title">Entity Relationship Diagram — KC-PLUS (simplified)</text>
+
+  <!-- Supplier box -->
+  <rect x="40" y="70" width="380" height="220" rx="8" ry="8" class="box" />
+  <text x="60" y="100" class="title">Supplier</text>
+  <line x1="60" y1="108" x2="400" y2="108" stroke="#ddd" stroke-width="1"/>
+  <text x="60" y="135" class="attr">SupplierID (PK)</text>
+  <text x="60" y="160" class="attr">Name</text>
+  <text x="60" y="185" class="attr">ContactPhone</text>
+  <text x="60" y="210" class="attr">Address</text>
+
+  <!-- Product box -->
+  <rect x="560" y="70" width="380" height="220" rx="8" ry="8" class="box" />
+  <text x="580" y="100" class="title">Product</text>
+  <line x1="580" y1="108" x2="940" y2="108" stroke="#ddd" stroke-width="1"/>
+  <text x="580" y="135" class="attr">ProductID (PK)</text>
+  <text x="580" y="160" class="attr">Name</text>
+  <text x="580" y="185" class="attr">UnitPrice</text>
+  <text x="580" y="210" class="attr">QuantityOnHand</text>
+  <text x="580" y="235" class="attr fk">SupplierID (FK)</text>
+
+  <!-- Relationship line and cardinality -->
+  <line x1="420" y1="180" x2="560" y2="180" class="line" />
+  <text x="420" y="200" class="card">Supplier (1)</text>
+  <text x="560" y="200" class="card">Product (0..*)</text>
+
+  <!-- Relationship label -->
+  <text x="430" y="165" class="attr">supplies</text>
+</svg>
